@@ -18,6 +18,6 @@ The goal of this test suite is to automate key user journeys using Playwright fo
 - **UI Elements** (buttons, modals, alerts).
 - **API Calls** (mocking, validation).
 
-## Test Websites used
+## 💻 Test Websites used
 - **Basic UI tests** using Polymer website.
 - **Authentication** using phptravels website.
