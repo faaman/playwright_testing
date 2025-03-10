@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test';
 
 const POLYMER_URL = 'https://shop.polymer-project.org';
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.beforeEach(async ({ page }, testInfo) => {
     console.log(`Running ${testInfo.title}`);
     // open a URL

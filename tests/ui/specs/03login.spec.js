@@ -1,6 +1,10 @@
 import { test } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
 
+test.use({ storageState: { cookies: [], origins: [] } // doesn't share the logged in session
+  //storageState: null,  // https://github.com/microsoft/playwright/issues/17396
+});
+
 test.describe('PHPTravels Login Tests', () => {
   let loginPage;
 

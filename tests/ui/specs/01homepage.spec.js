@@ -5,6 +5,8 @@ const POLYMER_URL = 'https://shop.polymer-project.org';
 
 let homePage;
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.beforeEach(async ({ page }, testInfo) => {
     console.log(`Running ${testInfo.title}`);
 

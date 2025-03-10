@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test';
+const messages = require('../../utils/messages.js');
 
 class LoginPage {
   constructor(page) {
@@ -28,7 +29,11 @@ class LoginPage {
     await this.page.waitForSelector('.text-group h4', { state: 'visible', timeout: 3000 });
     await this.page.screenshot({ path: 'pass-screenshots/wrong_login_error_message.png' });
     const errorText = await this.page.locator('.text-group h4').innerText();
-    console.log('Error:', errorText);
+    if (errorText.includes(messages.login.invalid)) {
+      console.log('Login failed with the correct error message:', errorText);
+    } else {
+      console.log('Unexpected error message:', errorText);
+    }
   }
 }
 
