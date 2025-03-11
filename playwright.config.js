@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-//const { defineConfig } = require('@playwright/test');
 
 /**
  * Read environment variables from file.
@@ -30,7 +29,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   // the below line is used to run the global setup file for authentication testing of phptravels website: 
-  globalSetup: require.resolve('./tests/setup/global-setup.js'),
+  globalSetup: './tests/setup/global-setup.js',
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     //baseURL: 'https://shop.polymer-project.org',
@@ -43,7 +42,9 @@ export default defineConfig({
     //slowMo: 50, // Optional: Slow down actions for better UI debugging
     // the below 2 lines are used to run the global setup file for authentication testing of phptravels website: 
     storageState: 'auth.json',  // Use the saved login session
-    headless: false,            // Set to true for faster test execution
+    //headless: false,            // Set to true for faster test execution
+    timeout: 30000,  // 30 seconds
+    navigationTimeout: 20000  // Page load timeout
   },
 
   /* Configure projects for major browsers */
@@ -53,12 +54,12 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
+   /* {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
 
-   /* {
+    {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },

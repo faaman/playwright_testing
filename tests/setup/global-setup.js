@@ -2,9 +2,9 @@
  Prevents saving an invalid session (e.g., if login fails).
  Guarantees that all tests using auth.json start from a logged-in state.*/
 
-const { chromium } = require('@playwright/test');
+import { chromium } from '@playwright/test';
 
-module.exports = async () => {
+export default async function globalSetup() {
     const browser = await chromium.launch({ headless: false });  // Set to true for faster execution - ask if this is needed?? 
     const page = await browser.newPage();
 

@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-const messages = require('../../utils/messages.js');
+import messages from '../../utils/messages.js';
 
 class LoginPage {
   constructor(page) {
