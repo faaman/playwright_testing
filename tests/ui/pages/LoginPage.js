@@ -4,36 +4,42 @@ import messages from '../../utils/messages.js';
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.emailField = page.locator('#email');
-    this.passwordField = page.locator('#password');
-    this.loginButton = page.locator('button:has-text("Login")');
-    this.errorMessage = page.locator('.alert-danger'); // Adjust selector if needed
+    this.usernameField = page.locator('input[name="username"]');
+    this.passwordField = page.locator('input[name="password"]');
+    this.loginButton = page.getByRole('button', { name: 'Log In' });
+    this.errorMessage = page.locator('.error'); // Adjust selector if needed
   }
 
   async goto() {
-    await this.page.goto('https://phptravels.net/login');
+    await this.page.goto('https://parabank.parasoft.com/parabank/index.html');
   }
 
   async login(email, password) {
-    await this.emailField.fill(email);
+    await this.usernameField.fill(email);
     await this.passwordField.fill(password);
     await this.loginButton.click();
   }
 
   async assertSuccessfulLogin() {
-    await expect(this.page).toHaveURL("https://phptravels.net/dashboard");
-    await expect(this.page.locator('span:text("Demo User")')).toBeVisible();
+    await expect(this.page).toHaveURL("https://parabank.parasoft.com/parabank/overview.htm");
+    await expect(this.page.locator('text="Welcome"')).toBeVisible();
   }
 
   async assertFailedLogin() {
-    await this.page.waitForSelector('.text-group h4', { state: 'visible', timeout: 3000 });
-    await this.page.screenshot({ path: 'pass-screenshots/wrong_login_error_message.png' });
-    const errorText = await this.page.locator('.text-group h4').innerText();
-    if (errorText.includes(messages.login.invalid)) {
-      console.log('Login failed with the correct error message:', errorText);
-    } else {
-      console.log('Unexpected error message:', errorText);
-    }
+      await this.errorMessage.waitFor({ state: 'visible', timeout: 5000 });
+      // Take screenshot
+      await this.page.screenshot({ 
+        path: 'pass-screenshots/wrong_login_error_message.png',
+        fullPage: true 
+      });
+    
+      // Verify text
+      const actualError = await this.errorMessage.innerText();
+      if (actualError.includes(messages.login.invalid)) {
+        console.log('Correct error message:', actualError);
+      } else {
+        throw new Error(`Wrong error message. Expected "${messages.login.invalid}", got "${actualError}"`);
+      }
   }
 }
 

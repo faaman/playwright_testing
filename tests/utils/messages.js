@@ -1,6 +1,6 @@
 const messages = {
     login: {
-        invalid: 'Invalid Login',
+        invalid: 'The username and password could not be verified.',
     },
     logout: {
         valid: 'Logout Successful',

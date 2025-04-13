@@ -27,6 +27,10 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  /* Reporter to use. This below can generate a JSON file with test results:
+  reporter: [
+    ['json', { outputFile: 'test-results.json' }] // Saves results as JSON
+  ],*/
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   // the below line is used to run the global setup file for authentication testing of phptravels website: 
   //globalSetup: './tests/setup/global-setup.js',
