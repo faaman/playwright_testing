@@ -7,7 +7,7 @@ class LoginPage {
     this.usernameField = page.locator('input[name="username"]');
     this.passwordField = page.locator('input[name="password"]');
     this.loginButton = page.getByRole('button', { name: 'Log In' });
-    this.errorMessage = page.locator('.error'); // Adjust selector if needed
+    this.errorMessage = page.locator('.error'); 
   }
 
   async goto() {
