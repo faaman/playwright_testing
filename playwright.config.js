@@ -33,7 +33,7 @@ export default defineConfig({
   ],*/
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   // the below line is used to run the global setup file for authentication testing of phptravels website: 
-  //globalSetup: './tests/setup/global-setup.js',
+  globalSetup: './tests/setup/global-setup.js',
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     //baseURL: 'https://shop.polymer-project.org',

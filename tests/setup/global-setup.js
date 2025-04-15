@@ -9,17 +9,17 @@ export default async function globalSetup() {
     const page = await browser.newPage();
 
     // Navigate to the PHPTravels login page
-    await page.goto('https://phptravels.net/login');
+    await page.goto('https://parabank.parasoft.com');
 
     // Fill in login credentials
-    await page.fill('input[name="email"]', 'user@phptravels.com');  // Replace with valid email
-    await page.fill('input[name="password"]', 'demouser');          // Replace with valid password
+    await page.fill('input[name="username"]', 'john');          // Replace with valid email
+    await page.fill('input[name="password"]', 'demo');          // Replace with valid password
 
     // Click the login button
-    await page.click('button[type="submit"]');
+    await page.getByRole('button', { name: 'Log In' }).click();
 
     // Wait for a key element that confirms successful login
-    await page.waitForSelector('span.ms-0', { timeout: 5000 });
+    await page.waitForSelector('text="Welcome"', { timeout: 5000 });
 
     // Save authentication state
     await page.context().storageState({ path: 'auth.json' });
