@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage-qapractice.js';
+import { LoginPage } from '../pages/delete-loginPage-qapractice.js';
 
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
