@@ -1,0 +1,34 @@
+@startuml transfer-page
+skinparam monochrome true
+skinparam classFontSize 14
+title TransferPage Class Diagram
+
+class TransferPage {
+  - page: Page
+  - fromAccountSelect: Locator
+  - toAccountSelect: Locator
+  - amountInput: Locator
+  - transferButton: Locator
+  - successMessage: Locator
+  --
+  + transferFunds(fromAccount: string, toAccount: string, amount: string): Promise<void>
+}
+
+class Page <<external>> {
+  Playwright Page class
+}
+
+class Locator <<external>> {
+  Playwright Locator class
+}
+
+TransferPage *-- Page : depends on
+TransferPage *-- Locator : uses
+
+note right of TransferPage::transferFunds
+  Flow:
+  1. Selects from/to accounts
+  2. Enters amount
+  3. Clicks transfer button
+end note
+@enduml

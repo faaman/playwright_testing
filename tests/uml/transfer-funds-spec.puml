@@ -1,0 +1,13 @@
+@startuml transfer-funds-spec
+participant Tester
+participant "transfer-fixture.js" as Fixture
+participant "TransferPage" as Page
+participant "Browser" as UI
+
+Tester -> Fixture: Execute test
+Fixture -> Page: Initialize transferPage
+Page -> UI: Fill form (from=13344, to=13344, $100.00)
+UI -> Page: Submit transfer
+Page -> UI: Verify success message
+UI --> Tester: Assertions pass
+@enduml

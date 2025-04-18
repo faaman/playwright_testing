@@ -1,0 +1,15 @@
+@startuml transfer-fixture
+component "transfer-fixture.js" as fixture {
+  [test.extend()]
+}
+
+component "transfer-page.js" as page {
+  [TransferPage]
+}
+
+component "hooks.js" as hooks
+
+fixture --> hooks : beforeEach()
+fixture --> page : creates
+fixture --> "@playwright/test" : extends
+@enduml
