@@ -6,7 +6,7 @@ import messages from '../../utils/messages.js';
 test.describe('Request Loan Tests', () => {
   let loanAmount = '100.00'; //for failure use '1000.00';
   let downPayment = '10.00'; //for failure use '100.00';
-  let fromAccountId = '13344'; //for failure use '13344'; 
+  let fromAccountId = '13344'; //these can keep changing, so need to add a logic to check which id is available plus also check amount in the account
 
   test('Successful funds transfer between accounts', async ({ loanPage }) => {
 

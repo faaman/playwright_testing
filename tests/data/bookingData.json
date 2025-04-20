@@ -1,0 +1,28 @@
+{
+    "validBooking": {
+      "firstname": "Playwright",
+      "lastname": "Test",
+      "totalprice": 200,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2024-06-01",
+        "checkout": "2024-06-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "minimalBooking": {
+      "firstname": "Minimal",
+      "lastname": "OnlyRequired",
+      "totalprice": 100,
+      "depositpaid": false,
+      "bookingdates": {
+        "checkin": "2024-07-01",
+        "checkout": "2024-07-02"
+      }
+    },
+    "invalidBooking": {
+      "lastname": "MissingFirstName",
+      "totalprice": 150
+    }
+  }
+  

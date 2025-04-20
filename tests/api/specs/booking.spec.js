@@ -1,22 +1,12 @@
 import { test, expect } from '@playwright/test';
 import { BookingApiClient } from '../../utils/api-client';
+import bookingData from '../../data/bookingData.json' assert { type: 'json' };
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Booking API Tests', () => {
   let bookingApi;
   let bookingId;
-  const sampleBooking = {
-    firstname: 'Playwright',
-    lastname: 'Test',
-    totalprice: 200,
-    depositpaid: true,
-    bookingdates: {
-      checkin: '2024-06-01',
-      checkout: '2024-06-05'
-    },
-    additionalneeds: 'Breakfast'
-  };
 
   test.beforeEach(async () => {
     bookingApi = new BookingApiClient();
@@ -24,13 +14,14 @@ test.describe('Booking API Tests', () => {
 
   test('Create and verify booking', async () => {
     // Create booking
-    const createResponse = await bookingApi.createBooking(sampleBooking);
+    const createResponse = await bookingApi.createBooking(bookingData.validBooking);
     console.log('Creation Response:', JSON.stringify(createResponse, null, 2));
+
     bookingId = createResponse.bookingid;
     console.log(`Booking ID: ${bookingId}`);
 
     // Verify response
-    expect(createResponse.booking).toEqual(sampleBooking);
+    expect(createResponse.booking).toEqual(bookingData.validBooking);
     expect(bookingId).toBeGreaterThan(0);
 
     // Get booking
@@ -38,23 +29,23 @@ test.describe('Booking API Tests', () => {
     console.log('Retrieved Booking:', JSON.stringify(getResponse, null, 2));
     
     // Verify details
-    expect(getResponse).toEqual(sampleBooking);
+    expect(getResponse).toEqual(bookingData.validBooking);
   });
 
   test('Create booking with minimum required fields', async () => {
-    const minimalBooking = {
-      firstname: 'Minimal',
-      lastname: 'Test',
-      totalprice: 100,
-      depositpaid: false,
-      bookingdates: {
-        checkin: '2024-06-01',
-        checkout: '2024-06-02'
-      }
-    };
+    const minResponse = await bookingApi.createBooking(bookingData.minimalBooking);
+    expect(minResponse.bookingid).toBeDefined();
+    expect(minResponse.booking).toMatchObject(bookingData.minimalBooking);
+    bookingId = minResponse.bookingid;
+    console.log(`Booking ID: ${bookingId}`);
+    console.log('Min Creation Response:', JSON.stringify(bookingData.minimalBooking, null, 2));
+  });
 
-    const response = await bookingApi.createBooking(minimalBooking);
-    expect(response.bookingid).toBeDefined();
-    expect(response.booking).toMatchObject(minimalBooking);
+  test.skip('Create booking with minimum required fields missing', async () => {
+    const response = await bookingApi.createBooking(bookingData.invalidBooking);
+    //expect(response.bookingid).toBeDefined();
+    //expect(response.booking).toMatchObject(bookingData.invalidBooking);
+    //console.log(`Booking ID: ${bookingId}`);
+   // console.log('Min Creation Response:', JSON.stringify(minimalBooking, null, 2));
   });
 });

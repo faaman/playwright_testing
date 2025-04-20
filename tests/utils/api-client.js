@@ -14,6 +14,9 @@ export class BookingApiClient {
         'Accept': 'application/json'
       }
     });
+    if (response.status() !== 200) {
+        throw new Error(`Failed to create booking. Status: ${response.status()}`);
+    }
     return await response.json();
   }
 
