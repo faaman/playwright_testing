@@ -1,3 +1,5 @@
+import messages from '../../utils/messages.js';
+
 export default class TransferPage {
     constructor(page) {
       this.page = page;
@@ -5,7 +7,7 @@ export default class TransferPage {
       this.toAccountSelect = page.locator('#toAccountId');
       this.amountInput = page.locator('#amount');
       this.transferButton = page.locator('input[value="Transfer"]');
-      this.successMessage = page.getByText('Transfer Complete!');
+      this.successMessage = page.getByText(messages.transfer.valid);
     }
   
     async transferFunds(fromAccount, toAccount, amount) {
