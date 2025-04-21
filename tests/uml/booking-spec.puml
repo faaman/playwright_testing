@@ -1,0 +1,59 @@
+@startuml booking-spec
+
+left to right direction
+
+actor Tester as "Test Runner"
+rectangle "Booking API Tests" {
+  usecase "Create and verify booking" as UC1
+  usecase "Create booking with minimum required fields" as UC2
+  usecase "Create booking with missing fields (skipped)" as UC3
+
+  UC1 --> UC2
+}
+
+rectangle "Test Setup" {
+  usecase "Initialize API Client" as SETUP
+  usecase "Clear storage state" as CLEAR
+}
+
+rectangle "Verifications" {
+  usecase "Verify response matches input" as VERIFY1
+  usecase "Verify booking ID exists" as VERIFY2
+  usecase "Verify minimal response" as VERIFY3
+}
+
+rectangle "API Operations" {
+  usecase "POST /booking" as POST
+  usecase "GET /booking/{id}" as GET
+}
+
+Tester --> CLEAR: test.use()
+CLEAR --> SETUP: beforeEach
+SETUP --> UC1: bookingApi ready
+UC1 --> POST: createBooking()
+POST --> VERIFY1: expect booking match
+POST --> VERIFY2: expect ID > 0
+UC1 --> GET: getBooking()
+GET --> VERIFY1: expect data match
+
+UC2 --> POST: minimalBooking
+POST --> VERIFY3: expect minimal match
+
+UC3 ..> POST: invalidBooking\n(skipped)
+
+note right of UC1
+  Logs creation response
+  and booking ID
+end note
+
+note left of UC2
+  Tests minimum
+  required fields
+end note
+
+note bottom of UC3
+  Skipped test case
+  for negative scenario
+end note
+
+@enduml

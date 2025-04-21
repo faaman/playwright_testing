@@ -1,0 +1,33 @@
+@startuml API-Client
+
+class BookingApiClient {
+  - baseURL: string
+  + {constructor}(baseURL: string)
+  + createBooking(bookingData: any): Promise<any>
+  + getBooking(bookingId: string): Promise<any>
+}
+
+class request {
+  + newContext(): Promise<any>
+}
+
+class Response {
+  + status(): number
+  + json(): Promise<any>
+}
+
+BookingApiClient --> request : uses
+BookingApiClient --> Response : returns
+
+note left of BookingApiClient::createBooking
+  Sends POST request to /booking
+  with booking data
+  Throws error if status not 200
+end note
+
+note right of BookingApiClient::getBooking
+  Sends GET request to /booking/{id}
+  Returns booking data
+end note
+
+@enduml

@@ -1,3 +1,7 @@
+// There is a warning generated in running the test which says, (node:3393) ExperimentalWarning: 
+// Importing JSON modules is an experimental feature and might change at any time
+// I am using this code because the alternative is convoluted and I couldn't fully understand it
+
 import { test, expect } from '@playwright/test';
 import { BookingApiClient } from '../../utils/api-client';
 import bookingData from '../../data/bookingData.json' assert { type: 'json' };
