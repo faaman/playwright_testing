@@ -65,6 +65,9 @@ for (const { firstname, lastname } of records) {
     });
     expect(delResponse.status()).toBe(201);
     // Verify delete using Get booking by ID
-
+    const notFoundResponse = await request.post('http://localhost:3001/booking/${bookingId}', {
+      data: bookingData
+    });
+    expect(notFoundResponse.status()).toBe(404);
   });
 }
