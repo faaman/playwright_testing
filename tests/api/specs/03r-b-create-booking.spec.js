@@ -2,7 +2,17 @@ import { test, expect } from '@playwright/test';
 import fs from 'fs';
 import { parse } from 'csv-parse/sync';
 
-const csvData = fs.readFileSync('../../data/data_01restful_create.csv');
+//const csvData = fs.readFileSync('../../data/data_01restful_create.csv');
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const csvPath = path.resolve(__dirname, '../../data/data_01restful_create.csv');
+const csvData = fs.readFileSync(csvPath);
+
+
 const records = parse(csvData, {
   columns: true,
   skip_empty_lines: true
