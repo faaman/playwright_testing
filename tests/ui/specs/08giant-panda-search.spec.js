@@ -6,17 +6,19 @@ test.describe('DuckDuckGo Search + CSS Selector Coverage', () => {
   let pageObj;
 
   const cssChecks = [
-    ['Tag name', 'tag'],
-    ['Class name', 'className'],
-    ['Tag and class', 'tagAndClass'],
+    ['Tag name', 'tagName'],
+    ['Tag class', 'tagClass'],
+    ['Tag class starting with header', 'tagClassMore'],
     ['ID', 'id'],
     ['Descendant combinator', 'descendant'],
-    ['Direct child combinator', 'directChild'],
+    ['Descendant combinator - third level', 'descendantThird'],
+    ['Direct child combinator no', 'directChildNo'],
+    ['Direct child combinator yes', 'directChildYes'],
     ['Multiple selectors', 'multiple'],
     ['Attribute existence', 'attrExistence'],
     ['Tag with attribute', 'attrTag'],
-    ['Attribute equality', 'attrEquals'],
     ['Attribute contains', 'attrContains'],
+    ['Attribute equality', 'attrEquals'],
     ['Negation pseudoclass', 'negation'],
     ['Nth-child pseudoclass', 'nthChild'],
   ];
