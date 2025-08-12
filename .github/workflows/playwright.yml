@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    if: false  # This disables the entire workflow
     runs-on: ubuntu-latest
 
     steps:

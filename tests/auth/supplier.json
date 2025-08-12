@@ -1,0 +1,25 @@
+{
+  "cookies": [
+    {
+      "name": "PHPSESSID",
+      "value": "gndvimr6fa3bmjhcqrsj8rnr7d",
+      "domain": "phptravels.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://phptravels.net",
+      "localStorage": [
+        {
+          "name": "pusherTransportTLS",
+          "value": "{\"timestamp\":1754950610612,\"transport\":\"ws\",\"latency\":352}"
+        }
+      ]
+    }
+  ]
+}
