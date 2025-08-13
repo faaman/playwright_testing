@@ -53,6 +53,21 @@ export class XPathPage {
     this.byAttributeConditionOr = page.locator('//input[@name="q" or @id="search_form_input"]');
 
     this.byLogicalNotFunction = page.locator('//a[not(contains(@class, "header"))]');
+
+    // This selects elements by an attribute
+    this.byAttribute2 = page.locator('//div[@data-result="snippet"]');
+
+    // When the only way to select an element that has the previous attribute and also a particular text, is by its text content - fragile locator
+    this.byTextFilter = page.locator('//div[@data-result="snippet" and contains(., "bamboo")]')
+
+    // a NOT condition for previous text filter
+    this.byNotTextFilter = page.locator('//div[@data-result="snippet" and not(contains(., "bamboo"))]')
+
+    // This selects elements by an index - fragile locator
+    this.byIndex2 = page.locator('(//div[@data-result="snippet"])[3]');
+
+    // Finding elements relative to other elements using advanced relationships
+    this.byLinkImg = page.locator('//a[.//img]');
   }
 
   async navigateDuckDuckGo() {

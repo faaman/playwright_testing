@@ -20,7 +20,12 @@ test.describe('DuckDuckGo XPath locator coverage', () => {
     ['By preceding-sibling', 'byPrecedingSibling'],
     ['By attribute condition AND', 'byAttributeConditionAnd'],
     ['By attribute condition OR', 'byAttributeConditionOr'],
-    ['By logical not function', 'byLogicalNotFunction'],
+    ['By logical NOT function', 'byLogicalNotFunction'],
+    ['By another attribute', 'byAttribute2'],
+    ['By text as a filter', 'byTextFilter'],
+    ['By text as a filter - with NOT', 'byNotTextFilter'],
+    ['By another index', 'byIndex2'],
+    ['By advanced relationships', 'byLinkImg'],
   ];
 
   test.beforeAll(async ({ browser }) => {
