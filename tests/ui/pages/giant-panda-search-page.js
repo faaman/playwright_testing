@@ -1,6 +1,6 @@
-//import { expect } from '@playwright/test';
+// This is the page object for testing CSS selectors 
 
-export class ExamplePage {
+export class CSSPage {
   constructor(page) {
     this.page = page;
 
