@@ -1,6 +1,6 @@
-// spec.js
+// This tests CSS selectors 
 import { test, expect } from '@playwright/test';
-import { ExamplePage } from '../pages/giant-panda-search-page.js';
+import { CSSPage } from '../pages/giant-panda-search-page.js';
 
 test.describe('DuckDuckGo Search + CSS Selector Coverage', () => {
   let pageObj;
@@ -27,7 +27,7 @@ test.describe('DuckDuckGo Search + CSS Selector Coverage', () => {
     // create a new browser context and page explicitly for beforeAll
     const context = await browser.newContext();
     const page = await context.newPage();
-    pageObj = new ExamplePage(page);
+    pageObj = new CSSPage(page);
     await pageObj.navigateDuckDuckGo();
     await pageObj.searchFor('giant panda');
   });
